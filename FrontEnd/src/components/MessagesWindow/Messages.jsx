@@ -2,9 +2,12 @@ import { useEffect, useRef } from "react";
 import useGetMessages from "../../hoocks/useGetMessages";
 import MessageSkeleton from "../skelotons/MessageSkeloton";
 import Message from "./Message";
+import useListenMessages from "../../hoocks/useListenMessages";
 
 const Messages = () => {
   const { loading, messages } = useGetMessages();
+  useListenMessages();
+
   const lastMessageRef = useRef();
   useEffect(() => {
     setTimeout(() => {

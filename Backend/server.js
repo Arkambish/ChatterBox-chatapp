@@ -5,13 +5,11 @@ import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.routes.js";
 import messageRoutes from "./routes/message.routes.js";
 import userRoutes from "./routes/user.routes.js";
-//!import cors from "cors"; // Import CORS middleware
-
+import { app, server } from "./socket/socket.js";
 import connectToMongoDB from "./db/connectToMongoDB.js";
 
 dotenv.config();
 
-const app = express();
 const PORT = process.env.PORT || 8000;
 // app.get("/", (req, res) => {
 //   res.send("Hello world");
@@ -31,7 +29,7 @@ app.use("/api/users", userRoutes);
 //   })
 // );
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   connectToMongoDB();
   console.log(`Server Running on port ${PORT}`);
 });
